@@ -140,7 +140,7 @@ def run_agent_stream(messages: list[dict], api_key: str) -> Generator[str, None,
                 for block in final_message.content:
                     if block.type == "tool_use":
                         result = _execute_tool(block.name, block.input)
-                        yield f"data: {json.dumps({'type': 'tool_result', 'name': block.name, 'result': result})}\n\n"
+                        yield f"data: {json.dumps({'type': 'tool_result', 'name': block.name, 'input': block.input, 'result': result})}\n\n"
                         tool_results.append({
                             "type": "tool_result",
                             "tool_use_id": block.id,
