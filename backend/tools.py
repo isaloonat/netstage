@@ -2,7 +2,7 @@ import ipaddress
 import re
 import httpx
 
-NETPULSE_BASE = "http://localhost:8000"
+NETPULSE_BASE = "http://localhost:8002"
 
 
 def get_devices() -> dict:
@@ -11,7 +11,7 @@ def get_devices() -> dict:
         r.raise_for_status()
         return r.json()
     except httpx.ConnectError:
-        return {"error": "NetPulse is not running (http://localhost:8000). Start it first."}
+        return {"error": "NetPulse is not running (http://localhost:8002). Start it first."}
     except Exception as e:
         return {"error": str(e)}
 
@@ -22,7 +22,7 @@ def get_device_history(ip: str) -> dict:
         r.raise_for_status()
         return r.json()
     except httpx.ConnectError:
-        return {"error": "NetPulse is not running (http://localhost:8000). Start it first."}
+        return {"error": "NetPulse is not running (http://localhost:8002). Start it first."}
     except Exception as e:
         return {"error": str(e)}
 
